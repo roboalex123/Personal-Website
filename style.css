@@ -37,6 +37,65 @@ h2 {
   color: #ff9e64; /* Yellowish tone for headings */
 }
 
+/* Profile Picture Styling */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+/* Project Card Styling */
+.project-card {
+    background-color: #1d1f2b;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    color: #acb0d0;
+}
+
+.project-card a {
+    color: #7aa2f7; /* Blue color from your colorscheme */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.project-card a:hover {
+    color: #b9f27c; /* Green hover color */
+}
+
+/* Bot Button Styling */
+.bot-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #7aa2f7;
+    color: #11121d;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bot-button:hover {
+    background-color: #b9f27c;
+}
+
+/* Command Bar Styling */
+.command-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #11121d;
+    color: #a0a8cd;
+    padding: 0.5rem;
+    font-family: 'Courier New', monospace;
+    text-align: left;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
 /* Footer Styling */
 footer {
   text-align: center;
