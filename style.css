@@ -1,0 +1,45 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #11121d; /* Background color from tokyodark */
+  color: #a0a8cd; /* Foreground color */
+  font-family: 'Courier New', monospace; /* Use a monospaced font */
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  padding: 2rem;
+}
+
+nav a {
+  color: #7da6ff; /* Blue color for links */
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #b9f27c; /* Green hover color */
+}
+
+/* Section Styling */
+section {
+  padding: 2rem;
+}
+
+h2 {
+  color: #ff9e64; /* Yellowish tone for headings */
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #787c99;
+}
