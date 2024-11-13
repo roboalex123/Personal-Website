@@ -69,17 +69,41 @@ h2 {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background-color: #7aa2f7;
+    height: 3rem;
+    width: 3rem;
     color: #11121d;
-    padding: 0.75rem 1.5rem;
+    background-color: #7aa2f7; /* Blue color */
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.3s;
 }
 
-.bot-button:hover {
-    background-color: #b9f27c;
+/* Default closed state (question mark) */
+.bot-button.closed {
+    background-color: #7aa2f7; /* Blue color */
+}
+
+.bot-button.closed:hover {
+    background-color: #6b92d5; /* Slightly darker blue */
+}
+
+/* Open state (X icon) */
+.bot-button.open {
+    background-color: #ff5c5c; /* Red color for open state */
+}
+
+.bot-button.open:hover {
+    background-color: #e04b4b; /* Slightly darker red */
+}
+
+/* Icon styling */
+.bot-button i {
+    font-size: 1.5rem;
 }
 
 /* Command Bar Styling */
@@ -94,6 +118,156 @@ h2 {
     font-family: 'Courier New', monospace;
     text-align: left;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Command Popup Styling */
+.command-popup {
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 30rem;
+    max-width: 90%;
+    max-height: 70%;
+    background-color: #11121d;
+    border: 1px solid #7aa2f7;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    color: #a0a8cd55;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none; /* Initially hidden */
+    /* display: flex; */
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.command-header {
+    color: #7aa2f7;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.command-body {
+    display: flex;
+    align-items: center;
+}
+
+.prompt-symbol {
+    color: #7aa2f7;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.command-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #a0a8cd;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}
+
+.response-output {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bot-message, .user-message {
+  max-width: 80%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 0 0 auto;
+  word-wrap: break-word;
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.bot-message {
+    background-color: #7aa2f7;
+    color: #11121d;
+    margin-left: auto;
+    border-bottom-left-radius: 0;
+}
+
+.user-message {
+    background-color: #ff5c5c;
+    color: #fff;
+    margin-right: auto;
+    border-bottom-right-radius: 0;
+}
+
+.bot-message::before, .user-message::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.bot-message::before {
+    border-top: 10px solid #7aa2f7;
+    left: -10px;
+}
+
+.user-message::before {
+    border-top: 10px solid #ff5c5c;
+    right: -10px;
+}
+
+/* Animation for the text */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Input field styling */
+/* .command-input { */
+/*     background-color: transparent; */
+/*     border: none; */
+/*     outline: none; */
+/*     color: #a0a8cd; */
+/*     font-size: 1rem; */
+/*     width: 100%; */
+/*     padding: 0.5rem; */
+/* } */
+
+/* Scrollbar styles */
+.command-popup::-webkit-scrollbar {
+    width: 8px;
+}
+
+.command-popup::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.command-popup::-webkit-scrollbar-track {
+    background-color: #222;
+}
+
+.clear-button {
+    background-color: #7aa2f7;
+    color: #11121d;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.clear-button:hover {
+    background-color: #6b92d5;
 }
 
 /* Footer Styling */

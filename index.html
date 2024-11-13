@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robert Voss - Personal Website</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   </head>
   <body>
     <header>
@@ -55,7 +56,6 @@
       </ul>
     </section>
 
-
     <section id="contact">
       <h2>Contact</h2>
       <p>Feel free to reach out to me via email or connect on social media:</p>
@@ -63,7 +63,22 @@
       <p>LinkedIn: <a href="https://www.linkedin.com/in/robert-a-voss/" target="_blank">Visit my LinkedIn</a></p>
     </section>
 
+    <div class="command-popup">
+      <div class="command-header">Cmdline</div>
+      <div class="response-output"></div>
+      <div class="command-body">
+        <span class="prompt-symbol">> </span>
+        <input type="text" class="command-input" placeholder="Ask me anything...">
+        <button class="clear-button" onclick="clearOutput()">Clear</button>
+      </div>
+    </div>
+
+
     <div class="command-bar">Press "/" to open the FAQ chat bot...</div>
+
+    <button class="bot-button" onclick="toggleCommandPopup()">
+      <i class="fas fa-question"></i>
+    </button>
 
     <footer>
       <p>&copy; 2024 Robert Voss</p>
