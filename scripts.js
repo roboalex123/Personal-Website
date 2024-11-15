@@ -1,16 +1,97 @@
+// document.body.style.zoom = 1.5;
+// Keyup event listener to stop scrolling
+document.addEventListener('keyup', (event) => {
+  if (event.key === 'j' || event.key === 'k') {
+    stopScrolling();
+  }
+});
+
+let keySequence = []; // To track sequences like "gg"
+
+// Keybinding functionality
 document.addEventListener('keydown', (event) => {
-  if (event.key === '/' && document.activeElement.tagName !== 'INPUT') {
-    event.preventDefault();
+  const tag = event.target.tagName.toLowerCase();
+
+  if (tag === 'input' && event.key === 'Escape') {
+    event.preventDefault(); // Prevent default browser actions
     toggleCommandPopup();
   }
-  else if (event.key === 'Escape' && document.activeElement.tagName == 'INPUT') {
-    event.preventDefault();
-    toggleCommandPopup();
+
+  // Ignore input fields and editable areas
+  if (tag === 'input' || tag === 'textarea' || event.isComposing) {
+    return;
+  }
+
+
+  // Handle single key presses for navigation
+  switch (event.key) {
+    case '/':
+      event.preventDefault(); // Prevent default browser actions
+      toggleCommandPopup();
+      break;
+    case 'G':
+      event.preventDefault(); // Prevent default browser actions
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      break;
+    case 'j':
+      event.preventDefault(); // Prevent default browser actions
+      startScrolling(1); // Scroll down
+      break;
+    case 'k':
+      event.preventDefault(); // Prevent default browser actions
+      startScrolling(-1); // Scroll up
+      break;
+    case 'h':
+      event.preventDefault(); // Prevent default browser actions
+      scrollToPreviousSection();
+      break;
+    case 'l':
+      event.preventDefault(); // Prevent default browser actions
+      scrollToNextSection();
+      break;
+    case '=':
+      //reset zoom level
+      document.body.style.zoom = 1;
+      break;
+    case '-':
+      //zoom out
+      document.body.style.zoom = parseFloat(document.body.style.zoom) - 0.1;
+      break;
+    case '+':
+      //zoom in
+      document.body.style.zoom = parseFloat(document.body.style.zoom) + 0.1;
+      break;
+    // case 'd':
+    //   let scrollValueDown = window.scrollY + 500;
+    //   window.scrollTo({ top: (scrollValueDown > window.innerHeight) ? (window.innerHeight + scrollValueDown) : (window.innerHeight), behavior: 'smooth' });
+    //   break;
+    // case 'u':
+    //   let scrollValueUp = window.scrollY - 500;
+    //   window.scrollTo({ top: (scrollValueUp < 0) ? (window.innerHeight - scrollValueUp) : (0), behavior: 'smooth' });
+    //   window.scrollValueUp = sc
+    //   break;
+  }
+
+  // Handle key sequences like "gg"
+  keySequence.push(event.key);
+  if (keySequence.join('') === 'gg') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    keySequence = [];
+    currentSectionIndex = 0;
+  }
+
+  // Clear keySequence if it gets too long
+  if (keySequence.length > 2) {
+    keySequence = [];
   }
 });
 
 document.querySelector('.clear-button').addEventListener('click', clearOutput);
 
+// Function to scroll to an element by ID
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
 
 let scrolling = false; // Track whether scrolling is active
 let scrollDirection = 0; // 1 for down, -1 for up
@@ -50,75 +131,12 @@ function scrollLoop() {
   }
 }
 
-// Keydown event listener to start scrolling
-document.addEventListener('keydown', (event) => {
-  //prevent scrolling while typinging
-  if (event.key === 'j' && event.target.tagName !== 'INPUT') {
-    startScrolling(1); // Scroll down
-  } else if (event.key === 'k' && event.target.tagName !== 'INPUT') {
-    startScrolling(-1); // Scroll up
-  }
-});
-
-// Keyup event listener to stop scrolling
-document.addEventListener('keyup', (event) => {
-  if (event.key === 'j' || event.key === 'k') {
-    stopScrolling();
-  }
-});
-
-let keySequence = []; // To track sequences like "gg"
-
-// Function to scroll to an element by ID
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-// Keybinding functionality
-document.addEventListener('keydown', (event) => {
-  const tag = event.target.tagName.toLowerCase();
-
-  // Ignore input fields and editable areas
-  if (tag === 'input' || tag === 'textarea' || event.isComposing) {
-    return;
-  }
-
-  // Handle single key presses for navigation
-  switch (event.key) {
-    case '/':
-      event.preventDefault(); // Prevent default browser search
-      openChatBot();
-      break;
-    case 'G':
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      break;
-  }
-
-  // Handle key sequences like "gg"
-  keySequence.push(event.key);
-  if (keySequence.join('') === 'gg') {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    keySequence = [];
-  }
-
-  // Handle section navigation with Shift + h/l
-  if (event.shiftKey && event.key === 'H') {
-    scrollToPreviousSection();
-  } else if (event.shiftKey && event.key === 'L') {
-    scrollToNextSection();
-  }
-
-  // Clear keySequence if it gets too long
-  if (keySequence.length > 2) {
-    keySequence = [];
-  }
-});
 
 function toggleCommandPopup() {
   const popup = document.querySelector('.command-popup');
   popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
 
-  // botButton's <p>
+  // botButton's
   const botButton = document.querySelector('.bot-button');
   if (popup.style.display === 'block')
   {
@@ -198,26 +216,27 @@ function generateResponse(input) {
   responseOutput.scrollBottom = responseOutput.scrollHeight;
 }
 
+function clearOutput() {
+  document.querySelector('.response-output').innerHTML = "";
+  document.querySelector('.command-input').value = "";
+  document.querySelector('.command-input').focus();
+}
+
 // Helper functions to navigate between sections
 const sections = ['about', 'projects', 'resources', 'contact'];
 let currentSectionIndex = 0;
 
 function scrollToPreviousSection() {
-  if (currentSectionIndex > 0) {
-    currentSectionIndex--;
-    scrollToSection(sections[currentSectionIndex]);
-  }
+  // if (currentSectionIndex > 0) {
+  //   currentSectionIndex--;
+  //   scrollToSection(sections[currentSectionIndex]);
+  // }
+
+  currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+  scrollToSection(sections[currentSectionIndex]);
 }
 
 function scrollToNextSection() {
-  if (currentSectionIndex < sections.length - 1) {
-    currentSectionIndex++;
+    currentSectionIndex = (currentSectionIndex + 1) % sections.length;
     scrollToSection(sections[currentSectionIndex]);
-  }
-}
-
-function clearOutput() {
-  document.querySelector('.response-output').innerHTML = "";
-  document.querySelector('.command-input').value = "";
-  document.querySelector('.command-input').focus();
 }
