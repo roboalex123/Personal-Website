@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy information for Robert Voss's personal Hermes Google Workspace integration.">
+    <title>Privacy Policy — Robert Voss</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Privacy Policy</h1>
+      <p>Hermes Google Workspace Integration</p>
+      <p><a href="/">Return to Robert Voss’s website</a></p>
+    </header>
+
+    <main>
+      <section aria-labelledby="scope">
+        <h2 id="scope">What this policy covers</h2>
+        <p><strong>Effective date: November 25, 2026.</strong></p>
+        <p>This policy describes the personal Google-account integration operated by Robert Voss using Hermes and the <code>gog</code> command-line client on a Linode server. It covers information accessed through that integration.</p>
+      </section>
+
+      <section aria-labelledby="operator">
+        <h2 id="operator">Operator and contact</h2>
+        <p>Robert Voss operates this integration. Questions about this policy may be sent to <a href="mailto:voss.a.robert@gmail.com">voss.a.robert@gmail.com</a>.</p>
+      </section>
+
+      <section aria-labelledby="data">
+        <h2 id="data">Google information accessed</h2>
+        <p>For Google accounts that authorize it, the integration may access account profile information and the services covered by the permissions granted. The current configuration requests access for Gmail, Calendar, Drive, Docs, Sheets, Slides, Forms, Contacts/People, Tasks, Apps Script, and Google Sites-related Drive content. Some granted permissions allow broad reading and editing. Google shows the permissions on its consent screen; those permissions may change if the configuration changes.</p>
+        <p>The integration is command-driven. It does not currently run a background job to continuously sync Google data. It uses Google information to carry out requests made through the authorized Hermes instance, such as finding or working with email, calendars, files, documents, spreadsheets, presentations, forms, contacts, and tasks.</p>
+      </section>
+
+      <section aria-labelledby="processing">
+        <h2 id="processing">How information is processed and stored</h2>
+        <p>Google information is retrieved through Google APIs and processed by the Hermes instance running on a Linode server. OAuth credentials are stored on that server in an encrypted file keyring. Credential files are not copied to other devices.</p>
+        <p>When Google content or results are included in an assistant response, they may be processed by the AI model provider configured for that Hermes request. Google information included in Hermes conversations or tool results may also remain in Hermes session history or logs on the server, subject to the server’s configured retention and deletion settings. Google continues to store information in the authorized Google account.</p>
+      </section>
+
+      <section aria-labelledby="sharing">
+        <h2 id="sharing">Sharing and service providers</h2>
+        <p>This integration is intended for Robert Voss’s use with accounts he authorizes. Information is not sold. Google processes API requests under its own terms. Linode provides server hosting. The AI model provider selected for a request may process information sent to it under that provider’s terms and settings.</p>
+        <p>Anyone permitted to use the connected Hermes instance could potentially issue requests that cause Google information to be processed. Access to that instance should therefore be limited to trusted users.</p>
+      </section>
+
+      <section aria-labelledby="security">
+        <h2 id="security">Security and retention</h2>
+        <p>OAuth credentials are protected in an encrypted keyring on the Linode server. No security measure is absolute. Information may persist in Google, Hermes session history or logs, or an AI provider’s systems as described by their respective settings and policies. This integration cannot promise deletion from those third-party systems.</p>
+      </section>
+
+      <section aria-labelledby="choices">
+        <h2 id="choices">Revoking access and deletion</h2>
+        <p>An account holder can revoke the integration’s access in <a href="https://myaccount.google.com/permissions">Google Account permissions</a>. The operator can also remove an account’s stored authorization from the Linode. Removing authorization prevents future API access, but does not delete information already stored in Google, Hermes history or logs, or a provider’s systems.</p>
+      </section>
+
+      <section aria-labelledby="changes">
+        <h2 id="changes">Changes to this policy</h2>
+        <p>This policy will be updated if the integration’s permissions, hosting, AI providers, background processing, or data-retention practices change.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="/">Robert Voss</a></p>
+    </footer>
+  </body>
+</html>
